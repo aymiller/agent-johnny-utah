@@ -208,6 +208,16 @@ controller.hears('agent smith', 'ambient', function (bot, message) {
     bot.reply(message, 'the matrix has you');
 });
 
+// Andy is my hero
+controller.hears([
+    'andy',
+    'andrew',
+    'miller'
+    ], 'ambient', function (bot, message) {
+
+    bot.reply(message, 'but most of all, andy is my hero');
+});
+
 
 // all direct mentions get vaya con dios
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
