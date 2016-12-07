@@ -139,7 +139,9 @@ controller.hears([
     'poohole',
     'poo hole',
     'anushole',
-    'anus hole'
+    'anus hole',
+    'bothole',
+    'bot hole'
     ], 'ambient', function (bot, message) {
     bot.reply(message, 'Listen you snot-nose little butthole, I was takin\' shrapnel in the Khe Sanh when you were crappin\' in your hands and rubbin\' it on your face!');
 });
@@ -223,9 +225,14 @@ controller.hears('deadbeef', 'ambient', function (bot, message) {
     bot.reply(message, '\x31\xc0\xb0\x31\xcd\x80\x93\x31\xc0\xb0\x17\xcd\x80\x68\x59\x58\xff\xe1\n\xff\xd4\x31\xc0\x8d\x51\x04\x89\xcf\x89\x02\xb0\x2e\x40\xfc\xae\x75\xfd\n\x89\x39\x89\xfb\x40\xae\x75\xfd\x88\x67\xff\xb0\x0b\xcd\x80\x31\xc0\x40\n\x31\xdb\xcd\x80\n/bin/sh\n0');
 });
 
-// apache
+// apache shellshock
 controller.hears('apache', 'ambient', function (bot, message) {
     bot.reply(message, '() { :; }; cat /etc/passwd');
+});
+
+// butthole success
+controller.hears('butthole(.*)success', 'ambient', function (bot, message) {
+    bot.reply(message, 'Tubular brah! GET PITTED!');
 });
 
 // all direct mentions get vaya con dios
