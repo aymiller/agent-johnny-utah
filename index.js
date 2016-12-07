@@ -77,12 +77,27 @@ controller.on('bot_channel_join', function (bot, message) {
 });
 
 
-controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'sup brah.');
+controller.hears([
+    'hello',
+    '^hi$',
+    '^hey$',
+    '^sup$',
+    'what\'s up',
+    ], 'direct_message', function (bot, message) {
+
+    bot.reply(message, 'Hello, friend.');
 });
 
 // I AM AN FBI AGENT
-controller.hears(['agent','fbi','fed','feds','federal','g-man'], 'ambient', function (bot, message) {
+controller.hears([
+    '^agent$',
+    '^fbi$',
+    '^fed$',
+    '^feds$',
+    '^federal$',
+    '^g-man$'
+    ], 'ambient', function (bot, message) {
+
     bot.reply(message,{
         text: 'This is your wake up call. I AM AN FBI AGENT!',
         icon_emoji: ':gun:'
@@ -95,7 +110,13 @@ controller.hears('who are you', 'direct_message,mention,direct_mention', functio
 });
 
 // viz mentions
-controller.hears(['viz','gui','fireball','fire ball'], 'ambient', function (bot, message) {
+controller.hears([
+    '^viz$',
+    '^gui$',
+    'fireball',
+    'fire ball'
+    ], 'ambient', function (bot, message) {
+
     replies = [
         '@brian.proctor HollyWOOD always up to no good.',
         '@brian.proctor Commands, what are they? Where are my icons and buttons?',
@@ -162,7 +183,7 @@ controller.hears([
     'lala land',
     'pasadena',
     'monterey park',
-    'mpk',
+    '^mpk$',
     'san gabriel'
     ], 'ambient', function (bot, message) {
 
