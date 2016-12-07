@@ -203,6 +203,11 @@ controller.hears([
     bot.reply(message, 'CANUCKS DON\'T SURF.');
 });
 
+// Agent Smith
+controller.hears('agent smith', 'ambient', function (bot, message) {
+    bot.reply(message, 'the matrix has you');
+});
+
 
 // all direct mentions get vaya con dios
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
