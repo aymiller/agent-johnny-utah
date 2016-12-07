@@ -108,7 +108,10 @@ controller.hears(['viz','gui','fireball','fire ball'], 'ambient', function (bot,
     bot.reply(message, reply);
 });
 
-
+// buttholes
+controller.hears(['butthole','buttholes','butt hole', 'butt holes'], 'ambient', function (bot, message) {
+    bot.reply(message, 'Listen you snot-nose little shit, I was takin\' shrapnel in the butthole in Khe Sanh when you were crappin\' in your hands and rubbin\' it on your face!');
+});
 
 // all direct mentions get vaya con dios
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
