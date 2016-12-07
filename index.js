@@ -21,6 +21,12 @@ function onInstallation(bot, installer) {
     }
 }
 
+/**
+ * Returns a random integer between min (inclusive) and max (inclusive)
+ */
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 /**
  * Configure the persistence options
@@ -34,28 +40,14 @@ if (process.env.MONGOLAB_URI) {
     };
 } else {
     config = {
-        json_file_store: ((process.env.TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
+        json_file_store: ('./db_slack_bot_ci/'),
     };
 }
 
-/**
- * Are being run as an app or a custom integration? The initialization will differ, depending
- */
-
-if (process.env.TOKEN || process.env.SLACK_TOKEN) {
-    //Treat this as a custom integration
-    var customIntegration = require('./lib/custom_integrations');
-    var token = (process.env.TOKEN) ? process.env.TOKEN : process.env.SLACK_TOKEN;
-    var controller = customIntegration.configure(token, config, onInstallation);
-} else if (process.env.CLIENT_ID && process.env.CLIENT_SECRET && process.env.PORT) {
-    //Treat this as an app
-    var app = require('./lib/apps');
-    var controller = app.configure(process.env.PORT, process.env.CLIENT_ID, process.env.CLIENT_SECRET, config, onInstallation);
-} else {
-    console.log('Error: If this is a custom integration, please specify TOKEN in the environment. If this is an app, please specify CLIENTID, CLIENTSECRET, and PORT in the environment');
-    process.exit(1);
-}
-
+//Treat this as a custom integration
+var customIntegration = require('./lib/custom_integrations');
+var token = 'xoxb-112799256176-LtdUE8hKdK33gIMtgdOG3FDK';
+var controller = customIntegration.configure(token, config, onInstallation);
 
 /**
  * A demonstration for how to handle websocket events. In this case, just log when we have and have not
@@ -82,27 +74,43 @@ controller.on('rtm_close', function (bot) {
 // BEGIN EDITING HERE!
 
 controller.on('bot_channel_join', function (bot, message) {
-    bot.reply(message, "I'm here!")
+    console.log('** Joined channel: ' + message)
 });
+
 
 controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'Hello!');
+    bot.reply(message, 'sup brah.');
+});
+
+// I AM AN FBI AGENT
+controller.hears(['agent','fbi','fed','feds','federal','g-man'], 'ambient', function (bot, message) {
+    bot.reply(message,{
+        text: 'This is your wake up call. I AM AN FBI AGENT!',
+        icon_emoji: ':gun:'
+    });
+});
+
+// who are you?
+controller.hears('who are you', 'direct_message,mention,direct_mention', function (bot, message) {
+    bot.reply(message,'Special Agent Johnny Utah, sir.');
+});
+
+// viz mentions
+controller.hears(['viz','gui','fireball','fire ball'], 'ambient', function (bot, message) {
+    replies = [
+        '@brian.proctor HollyWOOD always up to no good.',
+        '@brian.proctor Commands, what are they? Where are my icons and buttons?',
+        '@brian.proctor FIREBALL SHOTS!',
+        'You\'re about to jump out of a perfectly good plane, @brian.proctor, how does that make you feel?'
+    ];
+
+    reply = replies[getRandomInt(0,3)]
+    bot.reply(message, reply);
 });
 
 
-/**
- * AN example of what could be:
- * Any un-handled direct mention gets a reaction and a pat response!
- */
-//controller.on('direct_message,mention,direct_mention', function (bot, message) {
-//    bot.api.reactions.add({
-//        timestamp: message.ts,
-//        channel: message.channel,
-//        name: 'robot_face',
-//    }, function (err) {
-//        if (err) {
-//            console.log(err)
-//        }
-//        bot.reply(message, 'I heard you loud and clear boss.');
-//    });
-//});
+
+// all direct mentions get vaya con dios
+controller.on('direct_message,mention,direct_mention', function (bot, message) {
+    bot.reply(message, 'Vaya con DIOS.');  
+});
