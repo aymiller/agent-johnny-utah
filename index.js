@@ -191,6 +191,19 @@ controller.hears([
     bot.reply(message, years + ' years. Man, LA has changed a lot during that time. The air got dirty and the sex got clean.');
 });
 
+// Canada
+controller.hears([
+    'canada',
+    'canadian',
+    'toronto',
+    'calgary',
+    'montreal'
+    ], 'ambient', function (bot, message) {
+
+    bot.reply(message, 'CANUCKS DON\'T SURF.');
+});
+
+
 // all direct mentions get vaya con dios
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
     bot.reply(message, 'Vaya con DIOS.');  
