@@ -235,6 +235,21 @@ controller.hears('butthole(.*)success', 'ambient', function (bot, message) {
     bot.reply(message, 'Tubular brah! GET PITTED!');
 });
 
+// rickroll
+controller.hears([
+    'gonna give you',
+    'give you up',
+    'never gonna give',
+    'gonna give u',
+    'give u up',
+    'rick astley',
+    'astley',
+    'rick roll',
+    'rickroll'
+    ], 'ambient', function (bot, message) {
+    bot.reply(message, 'Never gonna give you up, never gonna let you go!');
+});
+
 // all direct mentions get vaya con dios
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
     bot.reply(message, 'Vaya con DIOS.');  
