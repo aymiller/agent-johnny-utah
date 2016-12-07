@@ -71,7 +71,6 @@ controller.on('rtm_close', function (bot) {
 /**
  * Core bot logic goes here!
  */
-// BEGIN EDITING HERE!
 
 controller.on('bot_channel_join', function (bot, message) {
     console.log('** Joined channel: ' + message)
@@ -109,8 +108,66 @@ controller.hears(['viz','gui','fireball','fire ball'], 'ambient', function (bot,
 });
 
 // buttholes
-controller.hears(['butthole','buttholes','butt hole', 'butt holes'], 'ambient', function (bot, message) {
-    bot.reply(message, 'Listen you snot-nose little shit, I was takin\' shrapnel in the butthole in Khe Sanh when you were crappin\' in your hands and rubbin\' it on your face!');
+controller.hears([
+    'butthole',
+    'buttholes',
+    'butt hole',
+    'butt holes',
+    'poophole',
+    'poop hole',
+    'poohole',
+    'poo hole',
+    'anushole',
+    'anus hole'
+    ], 'ambient', function (bot, message) {
+    bot.reply(message, 'Listen you snot-nose little butthole, I was takin\' shrapnel in the Khe Sanh when you were crappin\' in your hands and rubbin\' it on your face!');
+});
+
+// 4 letter words Warchild
+controller.hears([
+    'shit',
+    'fuck',
+    'cunt',
+    'slut',
+    'bitch',
+    'asshat'
+    ], 'ambient', function (bot, message) {
+    bot.reply(message, 'Back off, Warchild.');
+});
+
+// lawyers don't surf
+controller.hears([
+    'lawyer',
+    'lawyers',
+    'attorney',
+    'attorneys'
+    ], 'ambient', function (bot, message) {
+    bot.reply(message, 'Lawyers don\'t surf, but this one does.');
+});
+
+// i made a mistake
+controller.hears([
+    'i made a mistake',
+    'i was wrong',
+    'my bad',
+    ], 'ambient', function (bot, message) {
+
+    bot.reply(message, 'You crossed the line. People trusted you and they died. You gotta go DOWN.');
+});
+
+// Los Angeles
+controller.hears([
+    '^la$',
+    'los angeles',
+    'lala land',
+    'pasadena',
+    'monterey park',
+    'mpk',
+    'san gabriel'
+    ], 'ambient', function (bot, message) {
+
+    years = getRandomInt(3, 33)
+    bot.reply(message, years + ' years. Man, LA has changed a lot during that time. The air got dirty and the sex got clean.');
 });
 
 // all direct mentions get vaya con dios
